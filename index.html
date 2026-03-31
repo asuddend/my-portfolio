@@ -1,0 +1,615 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Adrian D'Souza - Portfolio" />
+    <title>Adrian D'Souza Portfolio</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #0b1220;
+            --muted: #4b5563;
+            --card: #f8fafc;
+            --border: #e5e7eb;
+            --blue: #2563eb;
+            --blue-2: #1d4ed8;
+            --ring: rgba(37, 99, 235, 0.35);
+            --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+            --radius: 14px;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid var(--ring);
+            outline-offset: 3px;
+            border-radius: 10px;
+        }
+
+        .container {
+            width: min(1080px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.7);
+        }
+
+        .headerInner {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            padding: 14px 0;
+            gap: 12px;
+        }
+
+        .linkedinDot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--blue);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+        }
+
+        .brand {
+            justify-self: start;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            text-align: left;
+        }
+        .brandName {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            font-size: 20px;
+        }
+
+        .nav {
+            justify-self: end;
+            display: inline-flex;
+            gap: 12px;
+            align-items: center;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .nav a {
+            padding: 10px 10px;
+            border-radius: 10px;
+        }
+        .nav a:hover { background: rgba(37, 99, 235, 0.08); color: var(--text); }
+
+        .hero {
+            padding: 56px 0 22px;
+        }
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+
+        h1 {
+            margin: 14px 0 10px;
+            font-size: clamp(32px, 5vw, 44px);
+            letter-spacing: -0.03em;
+            line-height: 1.06;
+        }
+
+
+        .ctaRow {
+            margin-top: 18px;
+            display: inline-flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .btnPrimary {
+            border-color: rgba(37, 99, 235, 0.35);
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.06));
+        }
+        .btn:hover { transform: translateY(-1px); }
+
+        .heroCard {
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .heroCardTitle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(2, 6, 23, 0.03);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            color: var(--muted);
+            font-weight: 650;
+            font-size: 12px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .statGrid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(229, 231, 235, 0.85);
+            background: #fff;
+        }
+        .statNum {
+            font-weight: 850;
+            letter-spacing: -0.03em;
+            font-size: 18px;
+        }
+        .statLabel {
+            margin-top: 4px;
+            color: var(--muted);
+            font-weight: 650;
+            font-size: 12px;
+        }
+
+        section {
+            padding: 26px 0;
+        }
+
+        /* Give the Projects section more breathing room below the hero */
+        #projects {
+            padding-top: 32px;
+            margin-top: 0;
+        }
+
+        /* Pull header text up to avoid the blue gradient showing through */
+        #projects .sectionTitle {
+            margin: -16px 0 12px;
+        }
+
+        /* Shift the subtitle up slightly without moving the project cards */
+        #projects .sectionSub {
+            margin: -10px 0 18px;
+        }
+
+        .sectionTitle {
+            font-size: 18px;
+            letter-spacing: -0.02em;
+        }
+        .sectionSub {
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 75ch;
+        }
+
+        .projectsGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .experienceGrid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(320px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .experienceCard {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            align-items: center;
+            gap: 18px;
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            border-radius: var(--radius);
+            background: rgba(248, 250, 252, 0.96);
+            padding: 16px;
+            min-height: 110px;
+        }
+
+        .experienceLogo {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            object-fit: contain;
+            object-position: center;
+            border: 1px solid rgba(37, 99, 235, 0.24);
+            background: #fff;
+            padding: 8px;
+        }
+
+        .experienceText {
+            margin: 0;
+            display: grid;
+            gap: 4px;
+        }
+
+        .experienceTitle {
+            font-weight: 850;
+            font-size: 18px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .experienceSub {
+            margin: 0;
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .experienceLogo {
+            width: 88px;
+            height: 88px;
+            border-radius: 14px;
+            object-fit: contain;
+            object-position: center;
+            border: 1px solid rgba(37, 99, 235, 0.24);
+            background: #fff;
+            padding: 8px;
+        }
+
+        .card {
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            border-radius: var(--radius);
+            background: rgba(248, 250, 252, 0.8);
+            padding: 16px;
+        }
+        .cardTitle {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 0 0 8px;
+        }
+        .cardTitle h3 {
+            margin: 0;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+        }
+        .cardMeta {
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .cardDesc {
+            margin: 0 0 12px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 14px;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(37, 99, 235, 0.92);
+            border: 1px solid rgba(37, 99, 235, 0.22);
+            background: rgba(37, 99, 235, 0.06);
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .footer {
+            padding: 34px 0 50px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        .footerRow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tinyLink {
+            color: var(--blue-2);
+            font-weight: 750;
+        }
+
+        @media (max-width: 900px) {
+            .heroGrid { grid-template-columns: 1fr; }
+            .projectsGrid { grid-template-columns: 1fr; }
+            .nav { display: none; }
+            .headerInner { grid-template-columns: 1fr; }
+            .brand { justify-self: center; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- React (no build step) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const LINKEDIN_URL = "https://www.linkedin.com/in/adriandsouza1/?skipRedirect=true";
+
+        const projects = [
+            {
+                title: "BMP390 Sensor Interface Breakout PCB",
+                when: "2026",
+                description: "Designed a custom BMP390 temperature and pressure sensor breakout with power filtering, LC decoupling, and SPI pin header for plug-and-play MCU integration.",
+                tags: ["KiCad", "SPI", "PCB Design", "Embedded Systems"],
+                images: ["./frontofpcb.jpg", "./backofpcb.jpg"],
+            },
+            {
+                title: "Op-Amp Audio Amplifier Validation",
+                when: "2024",
+                description: "Developed and tested dual op-amp amplifier designs achieving 10Hz–20kHz bandwidth with <3.5% distortion and a clear component selection comparison.",
+                tags: ["Analog Design", "Signal Integrity", "Breadboard", "Performance"],
+            },
+            {
+                title: "8-bit Verilog Processor Core",
+                when: "2025",
+                description: "Implemented an FSM-based ALU and control unit with full instruction set in Verilog, verified on FPGA, and cut verification time by 95% over manual methods.",
+                tags: ["Verilog", "FPGA", "Digital Logic", "FSM"],
+            },
+            {
+                title: "Professional Circuit Schematic Workflow",
+                when: "2026",
+                description: "Created detailed AutoCAD Electrical schematics for op-amp amplifiers and DC motor drivers with annotated wiring to speed prototyping and reduce errors.",
+                tags: ["AutoCAD Electrical", "Schematics", "PCB Prototyping", "Documentation"],
+            },
+        ];
+
+        function Header() {
+            return (
+                <header className="header">
+                    <div className="container headerInner">
+                        <div className="brand" aria-label="Site title">
+                            <div className="brandName">Adrian D&apos;Souza</div>
+                        </div>
+
+                        <nav className="nav" aria-label="Primary navigation">
+                            <a href="#about">About</a>
+                            <a href="#projects">Projects</a>
+                            <a href="#contact">Contact</a>
+                        </nav>
+                    </div>
+                </header>
+            );
+        }
+
+        function Hero() {
+            return (
+                <section className="hero">
+                    <div className="container heroGrid">
+                        <div>
+                            <h1>Electrical Engineering Student  
+Building Embedded Systems</h1>
+                            <div className="ctaRow">
+                                <a className="btn btnPrimary" href="#projects">View projects</a>
+                                <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+                            </div>
+                        </div>
+
+                        <div className="heroCard" aria-label="Quick facts">
+                            <div className="heroCardTitle">
+                                <span className="pill">Electrical Engineering • TMU</span>
+                            </div>
+                            <p className="cardDesc" style={{ marginBottom: 0 }}>
+                                Hands on experience designing embedded systems, PCBs, and digital hardware with a focus on real world implementation.
+                            </p>
+                            <div className="statGrid" role="list" aria-label="Highlights">
+                                <div className="stat" role="listitem">
+                                    <div className="statNum">4+ Projects</div>
+                                    <div className="statLabel">Built & tested</div>
+                                </div>
+                                <div className="stat" role="listitem">
+                                    <div className="statNum">KiCad + Verilog</div>
+                                    <div className="statLabel">Core tools</div>
+                                </div>
+                                <div className="stat" role="listitem">
+                                    <div className="statNum">FPGA + ESP32</div>
+                                    <div className="statLabel">Hardware</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        const experienceItems = [
+            {
+                title: "Toronto Metropolitan University",
+                subtitle: "Bachelor of Electrical Engineering (2022–2028)",
+                logo: "./TMU-BrandPage-Social-Tab-1.jpg",
+            },
+            {
+                title: "Toronto Met Formula Racing",
+                subtitle: "General member 2025-2026",
+                logo: "./TMFRlogo.png",
+            }
+        ];
+
+        function About() {
+            return (
+                <section id="about" aria-label="About">
+                    <div className="container">
+                        <h2 className="sectionTitle">About</h2>
+                        <div style={{display: 'grid', gridTemplateColumns: '200px 1fr', gap: '20px', alignItems: 'start'}}>
+                            <img src="./pictureofme.jpg" alt="Portrait of Adrian D'Souza" style={{width: '100%', borderRadius: 'var(--radius)', border: '1px solid var(--border)'}} />
+                            <div>
+                                <p className="sectionSub">
+                                    I&apos;m an Electrical Engineering student at Toronto Metropolitan University with a focus on embedded systems, PCB design, and hardware development. I enjoy building projects involving microcontrollers, sensors, and real-world applications that bridge hardware and software.
+                                </p>
+                                <p className="sectionSub">
+                                    I&apos;m currently seeking co-op opportunities where I can contribute to embedded systems, electronics design, or hardware-related projects while continuing to grow my technical skills.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function ExperienceEducation() {
+            return (
+                <section id="experience" aria-label="Experience and Education">
+                    <div className="container">
+                        <h2 className="sectionTitle">Experience & Education</h2>
+                        <p className="sectionSub">Clubs, school, and recent internship history with quick context and logos.</p>
+                        <div className="experienceGrid">
+                            {experienceItems.map((item) => (
+                                <article className="experienceCard" key={item.title}>
+                                    <img
+                                        className="experienceLogo"
+                                        src={item.logo}
+                                        alt={`${item.title} logo`}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = "https://via.placeholder.com/88x88.png?text=Logo";
+                                        }}
+                                    />
+                                    <div className="experienceText">
+                                        <h3 className="experienceTitle">{item.title}</h3>
+                                        <p className="experienceSub">{item.subtitle}</p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function Projects() {
+            return (
+                <section id="projects" aria-label="Projects">
+                    <div className="container">
+                        <h2 className="sectionTitle">Projects</h2>
+                        <p className="sectionSub">
+                            Real world electrical and software engineering projects showcasing embedded systems, PCB design, and system level thinking.
+                        </p>
+
+                        <div className="projectsGrid">
+                            {projects.map((p) => (
+                                <article className="card" key={p.title}>
+                                    <div className="cardTitle">
+                                        <h3>{p.title}</h3>
+                                        <span className="cardMeta">{p.when}</span>
+                                    </div>
+                                    <p className="cardDesc">{p.description}</p>
+                                    {p.images && (
+                                        <div style={{display: 'flex', gap: '10px', marginBottom: '12px'}}>
+                                            {p.images.map((img, i) => (
+                                                <img key={i} src={img} alt={`${p.title} image ${i+1}`} style={{width: 'calc(50% - 5px)', borderRadius: '8px', border: '1px solid var(--border)'}} />
+                                            ))}
+                                        </div>
+                                    )}
+                                    <div className="tags" aria-label={`${p.title} technologies`}>
+                                        {p.tags.map((t) => (
+                                            <span className="tag" key={t}>{t}</span>
+                                        ))}
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        function Contact() {
+            return (
+                <section id="contact" aria-label="Contact">
+                    <div className="container">
+                        <h2 className="sectionTitle">Contact</h2>
+                        <p className="sectionSub">
+                            Best way to reach me: LinkedIn.
+                        </p>
+                        <a className="btn btnPrimary" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                            Message me on LinkedIn
+                        </a>
+                    </div>
+                </section>
+            );
+        }
+
+        function Footer() {
+            return (
+                <footer className="footer" aria-label="Footer">
+                    <div className="container footerRow">
+                        <div>(c) {new Date().getFullYear()} Adrian D&apos;Souza</div>
+                        <a className="tinyLink" href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+                            Back to top
+                        </a>
+                    </div>
+                </footer>
+            );
+        }
+
+        function App() {
+            return (
+                <div id="top">
+                    <Header />
+                    <main>
+                        <Hero />
+                        <About />
+                        <ExperienceEducation />
+                        <Projects />
+                        <Contact />
+                    </main>
+                    <Footer />
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+</body>
+
+</html>
+
