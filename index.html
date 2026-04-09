@@ -381,7 +381,7 @@
                 when: "2026",
                 description: "Designed a custom BMP390 temperature and pressure sensor breakout with power filtering, LC decoupling, and SPI pin header for plug-and-play MCU integration.",
                 tags: ["KiCad", "SPI", "PCB Design", "Embedded Systems"],
-                images: ["./frontofpcb.jpg", "./backofpcb.jpg"],
+                images: ["./frontofpcb.jpg"],
             },
             {
                 title: "Op-Amp Audio Amplifier Validation",
@@ -545,7 +545,7 @@ Building Embedded Systems</h1>
                                     {p.images && (
                                         <div style={{display: 'flex', gap: '10px', marginBottom: '12px'}}>
                                             {p.images.map((img, i) => (
-                                                <img key={i} src={img} alt={`${p.title} image ${i+1}`} style={{width: 'calc(50% - 5px)', borderRadius: '8px', border: '1px solid var(--border)'}} />
+                                                <img key={i} src={img} alt={`${p.title} image ${i+1}`} style={{width: '100%', borderRadius: '8px', border: '1px solid var(--border)'}} />
                                             ))}
                                         </div>
                                     )}
