@@ -341,23 +341,36 @@
             background: transparent;
             cursor: zoom-in;
         }
-        .projectImageButton::after {
-            content: "⌕";
+        .projectImageButton::before {
+            content: "";
             position: absolute;
-            top: 8px;
-            right: 8px;
-            display: grid;
-            place-items: center;
-            width: 30px;
-            height: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.82);
-            border-radius: 999px;
-            background: rgba(2, 6, 23, 0.58);
-            color: #fff;
-            font-size: 20px;
-            line-height: 1;
-            box-shadow: 0 8px 18px rgba(2, 6, 23, 0.22);
+            inset: 0;
+            border-radius: 8px;
+            background: rgba(2, 6, 23, 0);
+            transition: background 160ms ease;
             pointer-events: none;
+        }
+        .projectImageButton::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 22px;
+            height: 22px;
+            background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230b1220' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+            filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.72));
+            opacity: 0.86;
+            transition: opacity 160ms ease, transform 160ms ease;
+            pointer-events: none;
+        }
+        .projectImageButton:hover::before,
+        .projectImageButton:focus-visible::before {
+            background: rgba(2, 6, 23, 0.18);
+        }
+        .projectImageButton:hover::after,
+        .projectImageButton:focus-visible::after {
+            opacity: 1;
+            transform: scale(1.05);
         }
         .projectImageFrame img {
             width: 100%;
