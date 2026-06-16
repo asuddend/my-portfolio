@@ -332,6 +332,7 @@
             overflow: hidden;
         }
         .projectImageButton {
+            position: relative;
             display: block;
             width: 100%;
             height: 100%;
@@ -339,6 +340,24 @@
             border: 0;
             background: transparent;
             cursor: zoom-in;
+        }
+        .projectImageButton::after {
+            content: "⌕";
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            border-radius: 999px;
+            background: rgba(2, 6, 23, 0.58);
+            color: #fff;
+            font-size: 20px;
+            line-height: 1;
+            box-shadow: 0 8px 18px rgba(2, 6, 23, 0.22);
+            pointer-events: none;
         }
         .projectImageFrame img {
             width: 100%;
@@ -569,6 +588,11 @@
                                     <span class="cardMeta">2025</span>
                                 </div>
                                 <p class="cardDesc">Implemented an FSM-based ALU and control unit with full instruction set in Verilog, verified on FPGA, and cut verification time by 95% over manual methods.</p>
+                                <div class="projectImageFrame">
+                                    <button class="projectImageButton" type="button" data-full-image="./ALU_flowchart.png" data-image-alt="8-bit Verilog Processor Core ALU flowchart">
+                                        <img src="./ALU_flowchart.png" alt="8-bit Verilog Processor Core ALU flowchart" />
+                                    </button>
+                                </div>
                                 <div class="tags" aria-label="8-bit Verilog Processor Core technologies">
                                     <span class="tag">Verilog</span>
                                     <span class="tag">FPGA</span>
@@ -686,6 +710,7 @@
                 when: "2025",
                 description: "Implemented an FSM-based ALU and control unit with full instruction set in Verilog, verified on FPGA, and cut verification time by 95% over manual methods.",
                 tags: ["Verilog", "FPGA", "Digital Logic", "FSM"],
+                images: ["./ALU_flowchart.png"],
             },
             {
                 title: "Professional Circuit Schematic Workflow",
