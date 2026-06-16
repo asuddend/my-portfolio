@@ -365,7 +365,190 @@
 </head>
 
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <div id="top">
+            <header class="header">
+                <div class="container headerInner">
+                    <div class="brand" aria-label="Site title">
+                        <div class="brandName">Adrian D&apos;Souza</div>
+                    </div>
+
+                    <nav class="nav" aria-label="Primary navigation">
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main>
+                <section class="hero">
+                    <div class="container heroGrid">
+                        <div>
+                            <h1>Electrical Engineering Student<br />Building Embedded Systems</h1>
+                            <div class="ctaRow">
+                                <a class="btn btnPrimary" href="#projects">View projects</a>
+                                <a class="btn" href="https://www.linkedin.com/in/adriandsouza1/?skipRedirect=true" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+                            </div>
+                        </div>
+
+                        <div class="heroCard" aria-label="Quick facts">
+                            <div class="heroCardTitle">
+                                <span class="pill">Electrical Engineering &bull; TMU</span>
+                            </div>
+                            <p class="cardDesc" style="margin-bottom: 0;">
+                                Hands on experience designing embedded systems, PCBs, and digital hardware with a focus on real world implementation.
+                            </p>
+                            <div class="statGrid" role="list" aria-label="Highlights">
+                                <div class="stat" role="listitem">
+                                    <div class="statNum">4+ Projects</div>
+                                    <div class="statLabel">Built &amp; tested</div>
+                                </div>
+                                <div class="stat" role="listitem">
+                                    <div class="statNum">KiCad + Verilog</div>
+                                    <div class="statLabel">Core tools</div>
+                                </div>
+                                <div class="stat" role="listitem">
+                                    <div class="statNum">FPGA + ESP32</div>
+                                    <div class="statLabel">Hardware</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="about" aria-label="About">
+                    <div class="container">
+                        <h2 class="sectionTitle">About</h2>
+                        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: start;">
+                            <img src="./pictureofme.jpg" alt="Portrait of Adrian D'Souza" style="width: 100%; border-radius: var(--radius); border: 1px solid var(--border);" />
+                            <div>
+                                <p class="sectionSub">
+                                    I&apos;m an Electrical Engineering student at Toronto Metropolitan University with a focus on embedded systems, PCB design, and hardware development. I enjoy building projects involving microcontrollers, sensors, and real-world applications that bridge hardware and software.
+                                </p>
+                                <p class="sectionSub">
+                                    I&apos;m currently seeking co-op opportunities where I can contribute to embedded systems, electronics design, or hardware-related projects while continuing to grow my technical skills.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="experience" aria-label="Experience and Education">
+                    <div class="container">
+                        <h2 class="sectionTitle">Experience &amp; Education</h2>
+                        <p class="sectionSub">Clubs, school, and recent internship history with quick context and logos.</p>
+                        <div class="experienceGrid">
+                            <article class="experienceCard">
+                                <img class="experienceLogo" src="./TMU-BrandPage-Social-Tab-1.jpg" alt="Toronto Metropolitan University logo" />
+                                <div class="experienceText">
+                                    <h3 class="experienceTitle">Toronto Metropolitan University</h3>
+                                    <p class="experienceSub">Bachelor of Electrical Engineering (2022-2028)</p>
+                                </div>
+                            </article>
+                            <article class="experienceCard">
+                                <img class="experienceLogo" src="./TMFRlogo.png" alt="Toronto Met Formula Racing logo" />
+                                <div class="experienceText">
+                                    <h3 class="experienceTitle">Toronto Met Formula Racing</h3>
+                                    <p class="experienceSub">General member 2025-2026</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" aria-label="Projects">
+                    <div class="container">
+                        <h2 class="sectionTitle">Projects</h2>
+                        <p class="sectionSub">
+                            Real world electrical and software engineering projects showcasing embedded systems, PCB design, and system level thinking.
+                        </p>
+
+                        <div class="projectsGrid">
+                            <article class="card">
+                                <div class="cardTitle">
+                                    <h3>BMP390 Sensor Interface Breakout PCB</h3>
+                                    <span class="cardMeta">2026</span>
+                                </div>
+                                <p class="cardDesc">Designed a custom BMP390 temperature and pressure sensor breakout with power filtering, LC decoupling, and SPI pin header for plug-and-play MCU integration.</p>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <img src="./frontofpcb.jpg" alt="BMP390 Sensor Interface Breakout PCB image 1" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);" />
+                                </div>
+                                <div class="tags" aria-label="BMP390 Sensor Interface Breakout PCB technologies">
+                                    <span class="tag">KiCad</span>
+                                    <span class="tag">SPI</span>
+                                    <span class="tag">PCB Design</span>
+                                    <span class="tag">Embedded Systems</span>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="cardTitle">
+                                    <h3>Fixed Frequency Waveform Generator &amp; DC Converter</h3>
+                                    <span class="cardMeta">2024</span>
+                                </div>
+                                <p class="cardDesc">Designed a fixed frequency square wave generator and DC to +/- DC converter using transistor switching and an LM318 op amp to generate symmetrical variable DC voltage levels.</p>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <img src="./project2.png" alt="Fixed Frequency Waveform Generator and DC Converter image 1" style="width: 100%; border-radius: 8px; border: 1px solid var(--border);" />
+                                </div>
+                                <div class="tags" aria-label="Fixed Frequency Waveform Generator and DC Converter technologies">
+                                    <span class="tag">Analog Design</span>
+                                    <span class="tag">LM318 Op Amp</span>
+                                    <span class="tag">Transistor Switching</span>
+                                    <span class="tag">Power Conversion</span>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="cardTitle">
+                                    <h3>8-bit Verilog Processor Core</h3>
+                                    <span class="cardMeta">2025</span>
+                                </div>
+                                <p class="cardDesc">Implemented an FSM-based ALU and control unit with full instruction set in Verilog, verified on FPGA, and cut verification time by 95% over manual methods.</p>
+                                <div class="tags" aria-label="8-bit Verilog Processor Core technologies">
+                                    <span class="tag">Verilog</span>
+                                    <span class="tag">FPGA</span>
+                                    <span class="tag">Digital Logic</span>
+                                    <span class="tag">FSM</span>
+                                </div>
+                            </article>
+
+                            <article class="card">
+                                <div class="cardTitle">
+                                    <h3>Professional Circuit Schematic Workflow</h3>
+                                    <span class="cardMeta">2026</span>
+                                </div>
+                                <p class="cardDesc">Created detailed AutoCAD Electrical schematics for op-amp amplifiers and DC motor drivers with annotated wiring to speed prototyping and reduce errors.</p>
+                                <div class="tags" aria-label="Professional Circuit Schematic Workflow technologies">
+                                    <span class="tag">AutoCAD Electrical</span>
+                                    <span class="tag">Schematics</span>
+                                    <span class="tag">PCB Prototyping</span>
+                                    <span class="tag">Documentation</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" aria-label="Contact">
+                    <div class="container">
+                        <h2 class="sectionTitle">Contact</h2>
+                        <p class="sectionSub">Best way to reach me: LinkedIn.</p>
+                        <a class="btn btnPrimary" href="https://www.linkedin.com/in/adriandsouza1/?skipRedirect=true" target="_blank" rel="noreferrer">
+                            Message me on LinkedIn
+                        </a>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer" aria-label="Footer">
+                <div class="container footerRow">
+                    <div>(c) 2026 Adrian D&apos;Souza</div>
+                    <a class="tinyLink" href="#top">Back to top</a>
+                </div>
+            </footer>
+        </div>
+    </div>
 
     <!-- React (no build step) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
