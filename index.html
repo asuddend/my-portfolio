@@ -368,6 +368,7 @@
             font-size: 14px;
         }
         .projectImageFrame {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -400,12 +401,14 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 22px;
-            height: 22px;
-            background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230b1220' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
-            filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.72));
-            opacity: 0.86;
-            transition: opacity 160ms ease, transform 160ms ease;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fff center / 20px 20px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+            opacity: 1;
+            transition: box-shadow 180ms ease, transform 180ms ease;
             pointer-events: none;
         }
         .projectImageButton:hover::before,
@@ -414,7 +417,7 @@
         }
         .projectImageButton:hover::after,
         .projectImageButton:focus-visible::after {
-            opacity: 1;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.24);
             transform: scale(1.05);
         }
         .projectImageFrame img {
@@ -424,6 +427,67 @@
             object-position: center;
             border-radius: 8px;
             display: block;
+        }
+        .carouselImage {
+            animation: carouselFade 220ms ease;
+        }
+        .carouselImage.isPrev {
+            animation-name: carouselFadePrev;
+        }
+        .carouselArrow {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background 180ms ease, transform 180ms ease, opacity 180ms ease;
+        }
+        .carouselArrow:hover,
+        .carouselArrow:focus-visible {
+            background: rgba(0, 0, 0, 0.64);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .carouselArrowPrev {
+            left: 10px;
+        }
+        .carouselArrowNext {
+            right: 10px;
+        }
+        @keyframes carouselFade {
+            from {
+                opacity: 0.55;
+                transform: translateX(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes carouselFadePrev {
+            from {
+                opacity: 0.55;
+                transform: translateX(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         .imageModal {
             position: fixed;
@@ -458,6 +522,55 @@
             font-size: 28px;
             line-height: 1;
             cursor: pointer;
+        }
+        .imageModalArrow {
+            position: absolute;
+            top: 50%;
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background 180ms ease, transform 180ms ease, opacity 180ms ease;
+        }
+        .imageModal.hasCarousel .imageModalArrow {
+            display: inline-flex;
+        }
+        .imageModalArrow:hover,
+        .imageModalArrow:focus-visible {
+            background: rgba(0, 0, 0, 0.64);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .imageModalArrowPrev {
+            left: 24px;
+        }
+        .imageModalArrowNext {
+            right: 24px;
+        }
+        @media (max-width: 700px) {
+            .imageModalArrow {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .imageModalArrowPrev {
+                left: 10px;
+            }
+            .imageModalArrowNext {
+                right: 10px;
+            }
         }
         .tags {
             display: flex;
@@ -667,15 +780,22 @@
 
                             <article class="card">
                                 <div class="cardTitle">
-                                    <h3>Professional Circuit Schematic Workflow</h3>
+                                    <h3>Industrial Conveyor Motor Control System</h3>
                                     <span class="cardMeta">2026</span>
                                 </div>
-                                <p class="cardDesc">Created detailed AutoCAD Electrical schematics for op-amp amplifiers and DC motor drivers with annotated wiring to speed prototyping and reduce errors.</p>
-                                <div class="tags" aria-label="Professional Circuit Schematic Workflow technologies">
+                                <p class="cardDesc">Designed a complete conveyor motor control system in AutoCAD Electrical featuring three-phase motor power distribution, operator controls, PLC integration, and cabinet layout documentation.</p>
+                                <div class="projectImageFrame" data-carousel data-current="0" data-images="./cabinetpic1.png|./cabinetpic2.png" data-title="Industrial Conveyor Motor Control System">
+                                    <button class="projectImageButton" type="button" data-full-image="./cabinetpic1.png" data-image-alt="Industrial Conveyor Motor Control System image 1">
+                                        <img class="carouselImage" src="./cabinetpic1.png" alt="Industrial Conveyor Motor Control System image 1" />
+                                    </button>
+                                    <button class="carouselArrow carouselArrowPrev" type="button" aria-label="Previous project image">❮</button>
+                                    <button class="carouselArrow carouselArrowNext" type="button" aria-label="Next project image">❯</button>
+                                </div>
+                                <div class="tags" aria-label="Industrial Conveyor Motor Control System technologies">
                                     <span class="tag">AutoCAD Electrical</span>
-                                    <span class="tag">Schematics</span>
-                                    <span class="tag">PCB Prototyping</span>
-                                    <span class="tag">Documentation</span>
+                                    <span class="tag">PLC I/O</span>
+                                    <span class="tag">Industrial Controls</span>
+                                    <span class="tag">Cabinet Layout</span>
                                 </div>
                             </article>
                         </div>
@@ -704,17 +824,36 @@
 
     <div class="imageModal" id="imageModal" aria-hidden="true">
         <button class="imageModalClose" type="button" aria-label="Close image preview">&times;</button>
+        <button class="imageModalArrow imageModalArrowPrev" type="button" aria-label="Previous full-size image">❮</button>
         <img id="imageModalImg" src="" alt="" />
+        <button class="imageModalArrow imageModalArrowNext" type="button" aria-label="Next full-size image">❯</button>
     </div>
 
     <script>
         const imageModal = document.getElementById("imageModal");
         const imageModalImg = document.getElementById("imageModalImg");
         const imageModalClose = document.querySelector(".imageModalClose");
+        let modalImages = [];
+        let modalImageIndex = 0;
+        let modalImageTitle = "Project";
 
-        function openImageModal(src, alt) {
+        function setModalImage(index) {
+            if (!modalImages.length) {
+                return;
+            }
+
+            modalImageIndex = (index + modalImages.length) % modalImages.length;
+            imageModalImg.src = modalImages[modalImageIndex];
+            imageModalImg.alt = `${modalImageTitle} image ${modalImageIndex + 1}`;
+        }
+
+        function openImageModal(src, alt, images = [], index = 0, title = "Project") {
+            modalImages = images.length ? images : [src];
+            modalImageIndex = index;
+            modalImageTitle = title;
             imageModalImg.src = src;
             imageModalImg.alt = alt || "";
+            imageModal.classList.toggle("hasCarousel", modalImages.length > 1);
             imageModal.classList.add("isOpen");
             imageModal.setAttribute("aria-hidden", "false");
         }
@@ -722,15 +861,61 @@
         function closeImageModal() {
             imageModal.classList.remove("isOpen");
             imageModal.setAttribute("aria-hidden", "true");
+            imageModal.classList.remove("hasCarousel");
             imageModalImg.src = "";
             imageModalImg.alt = "";
+            modalImages = [];
+            modalImageIndex = 0;
         }
 
         document.addEventListener("click", (event) => {
+            const modalArrow = event.target.closest(".imageModalArrow");
+
+            if (modalArrow) {
+                const step = modalArrow.classList.contains("imageModalArrowNext") ? 1 : -1;
+                setModalImage(modalImageIndex + step);
+                return;
+            }
+
+            const arrow = event.target.closest(".carouselArrow");
+
+            if (arrow) {
+                const frame = arrow.closest("[data-carousel]");
+
+                if (frame && frame.dataset.images) {
+                    const images = frame.dataset.images.split("|");
+                    const step = arrow.classList.contains("carouselArrowNext") ? 1 : -1;
+                    const current = Number(frame.dataset.current || 0);
+                    const next = (current + step + images.length) % images.length;
+                    const imageButton = frame.querySelector(".projectImageButton");
+                    const image = imageButton && imageButton.querySelector("img");
+                    const title = frame.dataset.title || "Project";
+                    const alt = `${title} image ${next + 1}`;
+
+                    if (!imageButton || !image) {
+                        return;
+                    }
+
+                    frame.dataset.current = String(next);
+                    imageButton.dataset.fullImage = images[next];
+                    imageButton.dataset.imageAlt = alt;
+                    image.src = images[next];
+                    image.alt = alt;
+                    image.className = `carouselImage${step < 0 ? " isPrev" : ""}`;
+                }
+
+                return;
+            }
+
             const trigger = event.target.closest(".projectImageButton");
 
             if (trigger) {
-                openImageModal(trigger.dataset.fullImage, trigger.dataset.imageAlt);
+                const frame = trigger.closest("[data-carousel]");
+                const images = frame && frame.dataset.images ? frame.dataset.images.split("|") : [];
+                const index = frame ? Number(frame.dataset.current || 0) : 0;
+                const title = frame ? frame.dataset.title : "Project";
+
+                openImageModal(trigger.dataset.fullImage, trigger.dataset.imageAlt, images, index, title);
                 return;
             }
 
@@ -742,6 +927,16 @@
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape" && imageModal.classList.contains("isOpen")) {
                 closeImageModal();
+            }
+
+            if (imageModal.classList.contains("isOpen") && modalImages.length > 1) {
+                if (event.key === "ArrowLeft") {
+                    setModalImage(modalImageIndex - 1);
+                }
+
+                if (event.key === "ArrowRight") {
+                    setModalImage(modalImageIndex + 1);
+                }
             }
         });
     </script>
@@ -777,10 +972,11 @@
                 images: ["./ALU_flowchart.png"],
             },
             {
-                title: "Professional Circuit Schematic Workflow",
+                title: "Industrial Conveyor Motor Control System",
                 when: "2026",
-                description: "Created detailed AutoCAD Electrical schematics for op-amp amplifiers and DC motor drivers with annotated wiring to speed prototyping and reduce errors.",
-                tags: ["AutoCAD Electrical", "Schematics", "PCB Prototyping", "Documentation"],
+                description: "Designed a complete conveyor motor control system in AutoCAD Electrical featuring three-phase motor power distribution, operator controls, PLC integration, and cabinet layout documentation.",
+                tags: ["AutoCAD Electrical", "PLC I/O", "Industrial Controls", "Cabinet Layout"],
+                images: ["./cabinetpic1.png", "./cabinetpic2.png"],
             },
         ];
 
@@ -906,6 +1102,68 @@ Building Embedded Systems</h1>
             );
         }
 
+        function ProjectImageCarousel({ project }) {
+            const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+            const [direction, setDirection] = React.useState("next");
+            const images = project.images || [];
+
+            if (!images.length) {
+                return null;
+            }
+
+            const showImage = (step) => {
+                setDirection(step > 0 ? "next" : "prev");
+                setCurrentImageIndex((index) => (index + step + images.length) % images.length);
+            };
+
+            const currentImage = images[currentImageIndex];
+            const imageAlt = `${project.title} image ${currentImageIndex + 1}`;
+
+            return (
+                <div
+                    className="projectImageFrame"
+                    data-carousel={images.length > 1 ? "true" : undefined}
+                    data-current={currentImageIndex}
+                    data-images={images.join("|")}
+                    data-title={project.title}
+                >
+                    <button
+                        className="projectImageButton"
+                        type="button"
+                        data-full-image={currentImage}
+                        data-image-alt={imageAlt}
+                    >
+                        <img
+                            className={`carouselImage${direction === "prev" ? " isPrev" : ""}`}
+                            key={currentImage}
+                            src={currentImage}
+                            alt={imageAlt}
+                        />
+                    </button>
+                    {images.length > 1 && (
+                        <>
+                            <button
+                                className="carouselArrow carouselArrowPrev"
+                                type="button"
+                                aria-label="Previous project image"
+                                onClick={() => showImage(-1)}
+                            >
+                                ❮
+                            </button>
+                            <button
+                                className="carouselArrow carouselArrowNext"
+                                type="button"
+                                aria-label="Next project image"
+                                onClick={() => showImage(1)}
+                            >
+                                ❯
+                            </button>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
         function Projects() {
             return (
                 <section id="projects" aria-label="Projects">
@@ -920,29 +1178,17 @@ Building Embedded Systems</h1>
                                 <article className="card" key={p.title}>
                                     <div className="cardTitle">
                                         <h3>{p.title}</h3>
-                                        <span className="cardMeta">{p.when}</span>
+                                        {p.when && <span className="cardMeta">{p.when}</span>}
                                     </div>
                                     <p className="cardDesc">{p.description}</p>
-                                    {p.images && (
-                                        <div className="projectImageFrame">
-                                            {p.images.map((img, i) => (
-                                                <button
-                                                    className="projectImageButton"
-                                                    type="button"
-                                                    key={i}
-                                                    data-full-image={img}
-                                                    data-image-alt={`${p.title} image ${i+1}`}
-                                                >
-                                                    <img src={img} alt={`${p.title} image ${i+1}`} />
-                                                </button>
+                                    <ProjectImageCarousel project={p} />
+                                    {p.tags && (
+                                        <div className="tags" aria-label={`${p.title} technologies`}>
+                                            {p.tags.map((t) => (
+                                                <span className="tag" key={t}>{t}</span>
                                             ))}
                                         </div>
                                     )}
-                                    <div className="tags" aria-label={`${p.title} technologies`}>
-                                        {p.tags.map((t) => (
-                                            <span className="tag" key={t}>{t}</span>
-                                        ))}
-                                    </div>
                                 </article>
                             ))}
                         </div>
