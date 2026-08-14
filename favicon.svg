@@ -2,7 +2,7 @@
   <style>
     .mark { fill: #1E3A5F; }
     @media (prefers-color-scheme: dark) {
-      .mark { fill: #F4E6CF; }
+      .mark { fill: #F8FAFC; }
     }
   </style>
   <path class="mark" d="M6 51 18 13h7.8L37.8 51h-8.6l-2-7H16.6l-2 7H6Zm12.6-14h6.6l-3.3-12.2L18.6 37Z"/>
